@@ -31,6 +31,12 @@ app.use('/api/share', shareRoutes);
 // Error Handler Middleware
 app.use(errorHandler);
 
+// Serve frontend
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

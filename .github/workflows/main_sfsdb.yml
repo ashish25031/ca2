@@ -23,6 +23,15 @@ jobs:
         with:
           node-version: '22.x'
 
+      - name: Build frontend
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run build
+
+      - name: Move frontend to backend dist
+        run: Move-Item -Path frontend/dist -Destination backend/dist
+
       - name: npm install, build, and test
         working-directory: ./backend
         run: |

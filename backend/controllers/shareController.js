@@ -52,10 +52,11 @@ const createShareLink = async (req, res) => {
                 VALUES (@file_id, @share_token, @access_password, @expiry_time)
             `);
 
+        const clientUrl = process.env.FRONTEND_URL || req.get('origin') || `${req.protocol}://${req.get('host')}`;
         res.status(201).json({
             linkId: result.recordset[0].id,
             token,
-            shareUrl: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/shared/${token}`
+            shareUrl: `${clientUrl}/shared/${token}`
         });
 
     } catch (error) {

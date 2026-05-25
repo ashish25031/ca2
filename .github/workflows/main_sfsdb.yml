@@ -25,11 +25,6 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          cd frontend
-          npm install
-          npm run build
-          Move-Item -Path dist -Destination ../backend/dist -Force
-          cd ../backend
           npm install
           npm run build --if-present
           npm run test --if-present
@@ -56,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E6DF9089871044D782560A7BC9B24C8E }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AD8D1E0283784E56A8EF87567D826EC5 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7A42BD44F0194B349AB998C3DE352D0C }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_054B367F29014A709427527AEB706808 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_92B949B13B2B41B0A8C2879937246106 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CE7795B8DDEE4EB7B1EE7473F5560E7F }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -67,3 +62,4 @@ jobs:
           app-name: 'sfsdb'
           slot-name: 'Production'
           package: .
+          
